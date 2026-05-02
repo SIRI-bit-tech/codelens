@@ -43,11 +43,24 @@ Simply paste or open any code file, select an explanation mode (Overview, Line-b
 
 ### Windows
 
-1. **Download** `CodeLens.exe` from the [latest release](https://github.com/SIRI-bit-tech/codelens/releases/tag/v1.0.0)
+1. **Download** `CodeLens-Windows.exe` from the [latest release](https://github.com/SIRI-bit-tech/codelens/releases/tag/v1.0.0)
 2. **Run** the executable (no installation needed)
 3. **Add your API key** in Settings (⚙️)
 
-That's it! No Python, no dependencies, just download and run.
+### macOS
+
+1. **Download** `CodeLens-macOS.app` from the [latest release](https://github.com/SIRI-bit-tech/codelens/releases/tag/v1.0.0)
+2. **Open** the app (you may need to right-click → Open first time due to Gatekeeper)
+3. **Add your API key** in Settings (⚙️)
+
+### Linux
+
+1. **Download** `CodeLens-Linux` from the [latest release](https://github.com/SIRI-bit-tech/codelens/releases/tag/v1.0.0)
+2. **Make it executable**: `chmod +x CodeLens-Linux`
+3. **Run**: `./CodeLens-Linux`
+4. **Add your API key** in Settings (⚙️)
+
+No Python, no dependencies, just download and run!
 
 ### From Source (For Developers)
 

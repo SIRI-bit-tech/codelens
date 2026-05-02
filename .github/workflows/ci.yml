@@ -17,8 +17,14 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            artifact_name: CodeLens-Windows
+            artifact_name: CodeLens-Windows.exe
             artifact_path: dist/CodeLens.exe
+          - os: macos-latest
+            artifact_name: CodeLens-macOS.app
+            artifact_path: dist/CodeLens.app
+          - os: ubuntu-latest
+            artifact_name: CodeLens-Linux
+            artifact_path: dist/CodeLens
 
     steps:
     - uses: actions/checkout@v3

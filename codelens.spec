@@ -1,4 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
+import sys
+import os
 
 block_cipher = None
 
@@ -35,6 +37,14 @@ a = Analysis(
 
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
+# Determine icon based on platform
+if sys.platform == 'win32':
+    icon_file = 'assets/icons/appicon.ico' if os.path.exists('assets/icons/appicon.ico') else None
+elif sys.platform == 'darwin':
+    icon_file = 'assets/icons/appicon.icns' if os.path.exists('assets/icons/appicon.icns') else None
+else:
+    icon_file = None
+
 exe = EXE(
     pyz,
     a.scripts,
@@ -55,19 +65,20 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='assets/icons/app_icon.ico' if os.path.exists('assets/icons/app_icon.ico') else None,
+    icon=icon_file,
 )
 
-# macOS app bundle
-app = BUNDLE(
-    exe,
-    name='CodeLens.app',
-    icon='assets/icons/app_icon.icns' if os.path.exists('assets/icons/app_icon.icns') else None,
-    bundle_identifier='com.codelens.app',
-    info_plist={
-        'NSPrincipalClass': 'NSApplication',
-        'NSHighResolutionCapable': 'True',
-        'CFBundleShortVersionString': '1.0.0',
-        'CFBundleVersion': '1.0.0',
-    },
-)
+# macOS app bundle (only created on macOS)
+if sys.platform == 'darwin':
+    app = BUNDLE(
+        exe,
+        name='CodeLens.app',
+        icon='assets/icons/appicon.icns' if os.path.exists('assets/icons/appicon.icns') else None,
+        bundle_identifier='com.codelens.app',
+        info_plist={
+            'NSPrincipalClass': 'NSApplication',
+            'NSHighResolutionCapable': 'True',
+            'CFBundleShortVersionString': '1.0.0',
+            'CFBundleVersion': '1.0.0',
+        },
+    )
