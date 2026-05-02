@@ -58,14 +58,3 @@ jobs:
       with:
         name: ${{ matrix.artifact_name }}
         path: ${{ matrix.build_path }}
-
-    - name: Upload to release
-      if: github.event_name == 'release'
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ${{ matrix.release_path }}
-        asset_name: ${{ matrix.artifact_name }}
-        asset_content_type: application/octet-stream
