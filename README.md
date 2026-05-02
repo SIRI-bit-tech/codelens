@@ -1,6 +1,6 @@
 # CodeLens - AI-Powered Code Explainer
 
-![CodeLens Banner](https://via.placeholder.com/1200x300/1e1e2e/89b4fa?text=CodeLens+-+Understand+Any+Code+Instantly)
+![CodeLens Banner](https://github.com/user-attachments/assets/3907abea-ffb0-47b6-8456-9e4390d89aa4)
 
 ## What is CodeLens?
 
@@ -28,14 +28,14 @@ Simply paste or open any code file, select an explanation mode (Overview, Line-b
 
 ## 📸 Screenshots
 
-### Main Interface
-![Main Interface](https://via.placeholder.com/800x500/1e1e2e/cdd6f4?text=Code+Editor+%2B+Explanation+Panel)
+### Main Interface - Code Explanation
+![Main Interface](https://github.com/user-attachments/assets/3907abea-ffb0-47b6-8456-9e4390d89aa4)
 
-### Chat Interface
-![Chat Interface](https://via.placeholder.com/800x500/1e1e2e/cdd6f4?text=Interactive+Follow-up+Chat)
+### Interactive Chat Interface
+![Chat Interface](https://github.com/user-attachments/assets/7a5ccd22-af85-44a0-bdfa-8c9b0d346f61)
 
 ### Settings
-![Settings](https://via.placeholder.com/800x500/1e1e2e/cdd6f4?text=Settings+%26+Configuration)
+![Settings](https://github.com/user-attachments/assets/904abd9f-bc13-405b-979c-1fcb3b48f50b)
 
 ---
 
@@ -43,28 +43,17 @@ Simply paste or open any code file, select an explanation mode (Overview, Line-b
 
 ### Windows
 
-1. Download `CodeLens-Setup.exe` from the [Releases](https://github.com/codelens/codelens/releases) page
-2. Run the installer
-3. Launch CodeLens from the Start Menu
+1. **Download** `CodeLens.exe` from the [latest release](https://github.com/SIRI-bit-tech/codelens/releases/tag/v1.0.0)
+2. **Run** the executable (no installation needed)
+3. **Add your API key** in Settings (⚙️)
 
-### macOS
+That's it! No Python, no dependencies, just download and run.
 
-1. Download `CodeLens.dmg` from the [Releases](https://github.com/codelens/codelens/releases) page
-2. Open the DMG file
-3. Drag CodeLens to your Applications folder
-4. Launch CodeLens from Applications
-
-### Linux
-
-1. Download `CodeLens.AppImage` from the [Releases](https://github.com/codelens/codelens/releases) page
-2. Make it executable: `chmod +x CodeLens.AppImage`
-3. Run: `./CodeLens.AppImage`
-
-### From Source
+### From Source (For Developers)
 
 ```bash
 # Clone the repository
-git clone https://github.com/codelens/codelens.git
+git clone https://github.com/SIRI-bit-tech/codelens.git
 cd codelens
 
 # Create a virtual environment
@@ -201,7 +190,7 @@ Access settings via **⚙️ Settings** button or `Ctrl+,`:
 
 ```bash
 # Clone the repository
-git clone https://github.com/codelens/codelens.git
+git clone https://github.com/SIRI-bit-tech/codelens.git
 cd codelens
 
 # Create virtual environment
@@ -210,7 +199,6 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
-pip install -r requirements-dev.txt
 
 # Run the application
 python main.py
@@ -291,13 +279,13 @@ pyinstaller codelens.spec
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+We welcome contributions! Please see [CONTRIBUTING.md](https://github.com/SIRI-bit-tech/codelens/blob/main/CONTRIBUTING.md) for guidelines.
 
 ---
 
 ## 📄 License
 
-CodeLens is licensed under the [MIT License](LICENSE).
+CodeLens is licensed under the [MIT License](https://github.com/SIRI-bit-tech/codelens/blob/main/LICENSE).
 
 ---
 
@@ -314,12 +302,12 @@ CodeLens is licensed under the [MIT License](LICENSE).
 
 ## 📞 Support
 
-- **Issues** - [GitHub Issues](https://github.com/codelens/codelens/issues)
-- **Discussions** - [GitHub Discussions](https://github.com/codelens/codelens/discussions)
-- **Email** - support@codelens.dev
-
+- **Issues** - [GitHub Issues](https://github.com/SIRI-bit-tech/codelens/issues)
+- **Discussions** - [GitHub Discussions](https://github.com/SIRI-bit-tech/codelens/discussions)
+- **Download** - [Latest Release](https://github.com/SIRI-bit-tech/codelens/releases/tag/v1.0.0)
+- **Email** - [Email](siritech001@gmail.com)
 ---
 
-**Made with ❤️ by the CodeLens Team**
+**Made with ❤️ by the SIRIDEV**
 
 *Version 1.0.0 | Last Updated: 2026*
