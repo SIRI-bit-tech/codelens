@@ -15,6 +15,7 @@ class Settings:
         "auto_detect_language": True,
         "save_history": True,
         "max_history_items": 20,
+        "ai_provider": "gemini",  # Default to Gemini
     }
 
     def __init__(self):
@@ -106,3 +107,12 @@ class Settings:
         """Set max history items"""
         if count > 0:
             self.set("max_history_items", count)
+
+    def get_ai_provider(self) -> str:
+        """Get current AI provider"""
+        return self.get("ai_provider", "gemini")
+
+    def set_ai_provider(self, provider: str):
+        """Set AI provider (gemini, openai, claude)"""
+        if provider in ["gemini", "openai", "claude"]:
+            self.set("ai_provider", provider)

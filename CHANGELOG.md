@@ -7,6 +7,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.0] - 2026-05-02
+
+### Added
+
+#### Multi-Provider AI Support
+- **Three AI Providers**: Google Gemini, OpenAI (GPT-4o-mini), and Anthropic Claude (Claude 3.5 Sonnet)
+- Provider selection dropdown in Settings
+- Secure storage for multiple API keys simultaneously
+- Easy switching between providers without losing API keys
+- Unified AI service interface supporting all providers
+- Provider-specific configurations (models, temperature, max tokens)
+
+#### Chat UI Improvements
+- ChatGPT-style message bubbles with avatar icons
+- User messages: Blue circular avatar with gray background
+- AI messages: Green circular avatar with transparent background
+- Removed text selection highlighting from chat messages
+- "Thinking" indicator when AI is processing responses
+- Improved chat panel styling with better contrast
+
+#### UI Enhancements
+- Resizable/draggable chat panel (vertical splitter)
+- More visible splitter handles (5px width with hover effect)
+- Improved splitter styling for both dark and light themes
+- Better visual feedback when dragging panels
+
+### Changed
+- Updated from single Gemini provider to multi-provider architecture
+- Refactored AI service into modular provider system
+- Enhanced settings dialog with provider selection UI
+- Improved rate limiting to work across all providers
+
+### Technical
+- Added `openai>=1.0.0` dependency
+- Added `anthropic>=0.18.0` dependency
+- Created provider abstraction layer
+- Implemented GeminiProvider, OpenAIProvider, and ClaudeProvider
+- Updated keyring helper for multi-provider key storage
+
+### Documentation
+- Added `MULTI_PROVIDER_SETUP.md` with setup instructions
+- Updated provider comparison table
+- Added API key acquisition guides for all providers
+
+---
+
 ## [1.0.0] - 2026-05-01
 
 ### Added
@@ -83,4 +129,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[1.0.0]: https://github.com/codelens/codelens/releases/tag/v1.0.0
+[1.1.0]: https://github.com/SIRI-bit-tech/codelens/releases/tag/v1.1.0
+[1.0.0]: https://github.com/SIRI-bit-tech/codelens/releases/tag/v1.0.0

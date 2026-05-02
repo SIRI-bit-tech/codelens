@@ -207,11 +207,15 @@ class MainWindow(QMainWindow):
         main_layout.setContentsMargins(0, 0, 0, 0)
 
         main_splitter = QSplitter(Qt.Orientation.Horizontal)
+        main_splitter.setHandleWidth(5)  # Make splitter handle more visible
+        main_splitter.setChildrenCollapsible(False)  # Prevent panels from collapsing
 
         self.code_editor = CodeEditor()
         main_splitter.addWidget(self.code_editor)
 
         right_splitter = QSplitter(Qt.Orientation.Vertical)
+        right_splitter.setHandleWidth(5)  # Make splitter handle more visible
+        right_splitter.setChildrenCollapsible(False)  # Prevent panels from collapsing
 
         self.explanation_panel = ExplanationPanel()
         right_splitter.addWidget(self.explanation_panel)
@@ -263,12 +267,13 @@ class MainWindow(QMainWindow):
 
     def init_ai_service(self):
         """Initialize AI service with API key"""
-        api_key = KeyringHelper.get_api_key()
+        provider = self.settings.get_ai_provider()
+        api_key = KeyringHelper.get_api_key(provider)
+        
         if api_key:
             try:
-                self.ai_service = AIService(api_key)
-                # Don't test connection on startup to avoid rate limiting
-                # Connection will be tested when user actually tries to explain code
+                from app.services.ai_service_unified import AIServiceUnified
+                self.ai_service = AIServiceUnified(provider, api_key)
                 self.status_bar.set_connection_status(True)
             except Exception as e:
                 self.status_bar.set_connection_status(False)
@@ -324,10 +329,13 @@ class MainWindow(QMainWindow):
             return
 
         if not self.ai_service:
+            provider_name = self.settings.get_ai_provider()
+            from app.config.constants import AI_PROVIDER_DISPLAY_NAMES
+            provider_display = AI_PROVIDER_DISPLAY_NAMES.get(provider_name, provider_name)
             QMessageBox.warning(
                 self,
                 "No API Key",
-                "Please add your Google Gemini API key in Settings (⚙️)"
+                f"Please add your {provider_display} API key in Settings (⚙️)"
             )
             self.on_settings_clicked()
             return
@@ -395,6 +403,12 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "No API Key", "Please add your API key in Settings.")
             return
 
+        # Show thinking indicator
+        self.chat_panel.show_thinking_indicator()
+        
+        # Disable input while processing
+        self.chat_panel.set_enabled(False)
+
         stream = self.settings.get_stream_responses()
 
         self.chat_worker = ChatWorker(
@@ -428,10 +442,19 @@ class MainWindow(QMainWindow):
         if self.current_history_id and self.settings.get_save_history():
             self.history_repo.update_chat_history(self.current_history_id, self.chat_history)
 
+        # Re-enable input
+        self.chat_panel.set_enabled(True)
+        
         self.status_bar.set_last_action("Chat response received")
 
     def on_chat_error(self, error):
         """Handle chat error"""
+        # Remove thinking indicator on error
+        self.chat_panel.remove_thinking_indicator()
+        
+        # Re-enable input
+        self.chat_panel.set_enabled(True)
+        
         QMessageBox.critical(self, "Error", f"Error in chat: {error}")
 
     def on_chat_cleared(self):
@@ -533,16 +556,32 @@ class MainWindow(QMainWindow):
             background-color: #45475a;
             border-radius: 6px;
         }
+        QSplitter::handle {
+            background-color: #313244;
+        }
+        QSplitter::handle:hover {
+            background-color: #45475a;
+        }
+        QSplitter::handle:horizontal {
+            width: 5px;
+        }
+        QSplitter::handle:vertical {
+            height: 5px;
+        }
+        QLabel {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
         #userBubble {
-            background-color: #89b4fa;
-            color: #ffffff;
-            border-radius: 12px;
+            background-color: #313244;
+            color: #e0e0e0;
+            border-radius: 18px;
+            border: none;
         }
         #aiBubble {
-            background-color: #2a2a3e;
+            background-color: transparent;
             color: #e0e0e0;
-            border-radius: 12px;
-            border: 1px solid #3a3a4e;
+            border-radius: 18px;
+            border: none;
         }
         """
         self.setStyleSheet(dark_style)
@@ -585,16 +624,32 @@ class MainWindow(QMainWindow):
             border: 1px solid #c0c0c0;
             padding: 5px;
         }
+        QSplitter::handle {
+            background-color: #e0e0e0;
+        }
+        QSplitter::handle:hover {
+            background-color: #c0c0c0;
+        }
+        QSplitter::handle:horizontal {
+            width: 5px;
+        }
+        QSplitter::handle:vertical {
+            height: 5px;
+        }
+        QLabel {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
         #userBubble {
-            background-color: #1e66f5;
-            color: #ffffff;
-            border-radius: 12px;
+            background-color: #f4f4f4;
+            color: #1e1e2e;
+            border-radius: 18px;
+            border: none;
         }
         #aiBubble {
-            background-color: #f5f5f5;
+            background-color: transparent;
             color: #1e1e2e;
-            border-radius: 12px;
-            border: 1px solid #e0e0e0;
+            border-radius: 18px;
+            border: none;
         }
         """
         self.setStyleSheet(light_style)

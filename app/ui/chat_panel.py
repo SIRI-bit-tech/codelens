@@ -85,8 +85,33 @@ class ChatPanel(QWidget):
         self.messages_layout.insertWidget(self.messages_layout.count() - 1, bubble)
         self.scroll_to_bottom()
 
+    def show_thinking_indicator(self):
+        """Show 'AI is thinking' indicator"""
+        thinking_label = QLabel("CodeLens is thinking...")
+        thinking_label.setStyleSheet("""
+            font-size: 13px;
+            color: #a6adc8;
+            font-style: italic;
+            padding: 10px;
+        """)
+        thinking_label.setObjectName("thinking_indicator")
+        self.messages_layout.insertWidget(self.messages_layout.count() - 1, thinking_label)
+        self.scroll_to_bottom()
+
+    def remove_thinking_indicator(self):
+        """Remove the thinking indicator"""
+        for i in range(self.messages_layout.count()):
+            widget = self.messages_layout.itemAt(i).widget()
+            if widget and widget.objectName() == "thinking_indicator":
+                self.messages_layout.removeWidget(widget)
+                widget.deleteLater()
+                break
+
     def add_ai_message_streaming(self, message: str):
         """Add or update AI message for streaming"""
+        # Remove thinking indicator if present
+        self.remove_thinking_indicator()
+        
         count = self.messages_layout.count()
         if count > 1:
             last_widget = self.messages_layout.itemAt(count - 2).widget()

@@ -1,13 +1,32 @@
 """Application-wide constants"""
 
 APP_NAME = "CodeLens"
-APP_VERSION = "1.0.0"
+APP_VERSION = "1.1.0"
 APP_AUTHOR = "CodeLens Team"
 APP_DESCRIPTION = "AI-Powered Code Explainer for Developers"
 
+# AI Provider Configuration
+AI_PROVIDERS = ["gemini", "openai", "claude"]
+AI_PROVIDER_DISPLAY_NAMES = {
+    "gemini": "Google Gemini",
+    "openai": "OpenAI",
+    "claude": "Anthropic Claude"
+}
+
+# Gemini Configuration
 GEMINI_MODEL = "gemini-2.5-flash"
 GEMINI_TEMPERATURE = 0.3
 GEMINI_MAX_OUTPUT_TOKENS = 8192
+
+# OpenAI Configuration
+OPENAI_MODEL = "gpt-4o-mini"
+OPENAI_TEMPERATURE = 0.3
+OPENAI_MAX_OUTPUT_TOKENS = 8192
+
+# Claude Configuration
+CLAUDE_MODEL = "claude-3-5-sonnet-20241022"
+CLAUDE_TEMPERATURE = 0.3
+CLAUDE_MAX_OUTPUT_TOKENS = 8192
 
 MAX_CODE_SIZE_BYTES = 50 * 1024
 
@@ -88,7 +107,9 @@ MODE_DISPLAY_NAMES = {
 }
 
 KEYRING_SERVICE_NAME = "codelens"
-KEYRING_API_KEY_NAME = "gemini_api_key"
+KEYRING_GEMINI_API_KEY = "gemini_api_key"
+KEYRING_OPENAI_API_KEY = "openai_api_key"
+KEYRING_CLAUDE_API_KEY = "claude_api_key"
 
 DB_NAME = "codelens.db"
 MAX_HISTORY_ITEMS = 20

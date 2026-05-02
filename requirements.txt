@@ -1,4 +1,6 @@
 google-genai>=0.2.0
+openai>=1.0.0
+anthropic>=0.18.0
 PyQt6>=6.7.0
 PyQt6-QScintilla>=2.14.0
 keyring>=25.0.0
