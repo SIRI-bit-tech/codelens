@@ -1,0 +1,7 @@
+google-genai>=0.2.0
+PyQt6>=6.7.0
+PyQt6-QScintilla>=2.14.0
+keyring>=25.0.0
+pygments>=2.18.0
+markdown>=3.6
+reportlab>=4.2.0
